@@ -1,0 +1,11 @@
+ai-agent-project/
+├── agent/
+│   ├── planner/
+│   ├── tools/
+│   └── memory/
+├── skills/
+├── prompts/
+├── runtime/
+└── evaluations/
+
+Synthetic repository for agent architecture benchmark.
