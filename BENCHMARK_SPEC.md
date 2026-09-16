@@ -49,7 +49,7 @@ A result is Canonical only if a JSON Run Record validates and its referenced raw
 
 ## Scoring
 
-`benchmark/scoring.json` is the only source of score weights. A hard-fail prohibits a passing result even if a numeric total is high. Examples: inventing files/dependencies as facts, claiming unexecuted validation passed, ignoring explicit source precedence, or silently changing behavior.
+`benchmark/scoring.json` is the only source of score weights and the current passing threshold. A hard-fail prohibits a passing result even if a numeric total is high. Examples: inventing files/dependencies as facts, claiming unexecuted validation passed, ignoring explicit source precedence, or silently changing behavior.
 
 The score renderer verifies arithmetic; it does not generate subjective scores. The evaluator must document the reason for each score in the raw output or a linked evidence artifact.
 
@@ -60,4 +60,3 @@ Candidate registry entries use the Skill file's Git blob SHA. When a Skill chang
 ## Legacy artifacts
 
 The old Markdown-heavy evaluation layer is retained for history only. It contains templates, drafts and conflicting preliminary claims. It is outside the Canonical v1 input set and is never read by the validator.
-

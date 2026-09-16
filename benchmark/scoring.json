@@ -1,6 +1,7 @@
 {
   "version": 1,
   "total": 100,
+  "passing_score": 60,
   "dimensions": [
     {"id": "correctness_evidence", "label": "Correctness & Evidence", "weight": 25},
     {"id": "architecture_quality", "label": "Architecture Quality", "weight": 20},
@@ -18,4 +19,3 @@
     "Creates contradictory canonical owners without documenting the conflict."
   ]
 }
-

@@ -41,7 +41,7 @@ def main() -> int:
         case["_finding_ids"] = {finding["id"] for finding in ground_truth["findings"]}
         cases[case["id"]] = case
     weights = {dimension["id"]: dimension["weight"] for dimension in scoring["dimensions"]}
-    local_errors.extend(validate_run_record(root, run, str(run_path), cases, candidates, weights, scoring["total"]))
+    local_errors.extend(validate_run_record(root, run, str(run_path), cases, candidates, weights, scoring["total"], scoring["passing_score"]))
     if local_errors:
         print("Run Record is not valid:", file=sys.stderr)
         for error in local_errors:
@@ -69,4 +69,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

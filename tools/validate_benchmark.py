@@ -56,18 +56,18 @@ def git_blob_sha(path: Path) -> str:
     return hashlib.sha1(f"blob {len(payload)}\0".encode() + payload).hexdigest()
 
 
-def validate_scoring(root: Path, path: Path, errors: list[str]) -> tuple[dict[str, int], int]:
+def validate_scoring(root: Path, path: Path, errors: list[str]) -> tuple[dict[str, int], int, int]:
     data = load_json(path, errors)
     if not data:
-        return {}, 0
+        return {}, 0, 0
     dimensions = data.get("dimensions")
     total = data.get("total")
     if not isinstance(dimensions, list) or not dimensions:
         errors.append("scoring.dimensions must be a non-empty array")
-        return {}, 0
+        return {}, 0, 0
     if not isinstance(total, int) or total <= 0:
         errors.append("scoring.total must be a positive integer")
-        return {}, 0
+        return {}, 0, 0
     weights: dict[str, int] = {}
     for index, dimension in enumerate(dimensions):
         label = f"scoring.dimensions[{index}]"
@@ -85,9 +85,30 @@ def validate_scoring(root: Path, path: Path, errors: list[str]) -> tuple[dict[st
             errors.append(f"{label}.weight must be a positive integer")
             continue
         weights[dim_id] = weight
+    passing_score = data.get("passing_score")
+    if not isinstance(passing_score, int) or not 1 <= passing_score <= total:
+        errors.append("scoring.passing_score must be an integer from 1 to scoring.total")
+        passing_score = total
     if weights and sum(weights.values()) != total:
         errors.append(f"scoring dimensions total {sum(weights.values())}, expected {total}")
-    return weights, total
+    return weights, total, passing_score
+
+
+def validate_run_schema(path: Path, errors: list[str]) -> None:
+    data = load_json(path, errors)
+    if not data:
+        return
+    required = data.get("required")
+    properties = data.get("properties")
+    expected = {
+        "run_id", "status", "outcome", "case_id", "case_version", "candidate_id",
+        "candidate_skill_blob", "model", "environment", "raw_output_path", "evidence",
+        "verification", "scores", "hard_fail",
+    }
+    if not isinstance(required, list) or not expected.issubset(set(required)):
+        errors.append("run schema must require every canonical Run Record field")
+    if not isinstance(properties, dict) or not expected.issubset(set(properties)):
+        errors.append("run schema must define every canonical Run Record field")
 
 
 def validate_candidates(root: Path, path: Path, errors: list[str]) -> dict[str, dict[str, Any]]:
@@ -222,6 +243,7 @@ def validate_run_record(
     candidates: dict[str, dict[str, Any]],
     weights: dict[str, int],
     total: int,
+    passing_score: int,
 ) -> list[str]:
     errors: list[str] = []
     required = [
@@ -250,6 +272,10 @@ def validate_run_record(
         errors.append(f"{label}.candidate_id is not registered")
     elif run.get("candidate_skill_blob") != candidate.get("skill_blob"):
         errors.append(f"{label}.candidate_skill_blob does not match current registered candidate")
+    if case and run.get("candidate_id") not in case.get("candidates", []):
+        errors.append(f"{label}.candidate_id is not enabled for this case")
+    if case and candidate and case.get("task_class") not in candidate.get("supported_task_classes", []):
+        errors.append(f"{label}.candidate does not support the case task_class")
     model = run.get("model")
     if not isinstance(model, dict) or not isinstance(model.get("id"), str) or not model["id"].strip():
         errors.append(f"{label}.model.id must be a non-empty string")
@@ -264,6 +290,9 @@ def validate_run_record(
         if not isinstance(environment.get("tools"), list) or not all(isinstance(item, str) for item in environment["tools"]):
             errors.append(f"{label}.environment.tools must be an array of strings")
     raw_output = safe_path(root, run.get("raw_output_path"), errors, f"{label}.raw_output_path")
+    expected_raw_path = root / "benchmark/runs" / f"{run.get('run_id', '')}.md"
+    if raw_output and raw_output != expected_raw_path.resolve():
+        errors.append(f"{label}.raw_output_path must be benchmark/runs/<run_id>.md")
     if raw_output and not raw_output.is_file():
         errors.append(f"{label}.raw_output_path does not exist")
     evidence = run.get("evidence")
@@ -317,6 +346,13 @@ def validate_run_record(
         errors.append(f"{label}.outcome must be fail when hard_fail.triggered is true")
     elif not hard_fail["triggered"] and hard_fail["reasons"]:
         errors.append(f"{label}.hard_fail.reasons must be empty when hard_fail.triggered is false")
+    if status == "complete" and run.get("outcome") == "not-scored":
+        errors.append(f"{label}.complete runs must have pass or fail outcome")
+    if isinstance(scores, dict) and isinstance(scores.get("total"), int) and isinstance(hard_fail, dict):
+        if not hard_fail.get("triggered") and run.get("outcome") == "pass" and scores["total"] < passing_score:
+            errors.append(f"{label}.pass outcome requires score at least {passing_score}")
+        if not hard_fail.get("triggered") and run.get("outcome") == "fail" and scores["total"] >= passing_score:
+            errors.append(f"{label}.fail outcome below hard-fail requires score below {passing_score}")
     return errors
 
 
@@ -357,7 +393,9 @@ def validate_repository(root: Path) -> list[str]:
     schema_path = safe_path(root, manifest.get("run_schema"), errors, "manifest.run_schema")
     if schema_path and not schema_path.is_file():
         errors.append("manifest.run_schema does not exist")
-    weights, total = validate_scoring(root, scoring_path, errors) if scoring_path else ({}, 0)
+    elif schema_path:
+        validate_run_schema(schema_path, errors)
+    weights, total, passing_score = validate_scoring(root, scoring_path, errors) if scoring_path else ({}, 0, 0)
     candidates = validate_candidates(root, candidate_path, errors) if candidate_path else {}
     entries = manifest.get("cases")
     if not isinstance(entries, list) or len(entries) < 3:
@@ -387,7 +425,7 @@ def validate_repository(root: Path) -> list[str]:
         for record_path in sorted(runs_dir.glob("*.json")):
             run = load_json(record_path, errors)
             if run:
-                errors.extend(validate_run_record(root, run, str(record_path.relative_to(root)), cases, candidates, weights, total))
+                errors.extend(validate_run_record(root, run, str(record_path.relative_to(root)), cases, candidates, weights, total, passing_score))
     validate_source_lock(root, errors)
     return errors
 
