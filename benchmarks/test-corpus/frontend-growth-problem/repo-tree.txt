@@ -1,0 +1,12 @@
+frontend-growth-problem/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── state/
+│   ├── hooks/
+│   └── utils/
+├── tests/
+├── assets/
+└── README.md
+
+Synthetic repository for frontend architecture benchmark.
