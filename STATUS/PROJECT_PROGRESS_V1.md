@@ -13,6 +13,8 @@ The repository now has a reproducible benchmark framework for repository-enginee
 - a standard-library validator, score renderer and GitHub Actions validation workflow;
 - source pins for the external references used in synthesis.
 
+The full before/after audit is recorded in [`CANONICAL_V1_AUDIT.md`](CANONICAL_V1_AUDIT.md).
+
 ## What is deliberately not claimed
 
 No Canonical v1 model run or winner is recorded yet. A real result must include the exact model/runtime, candidate revision, raw output, evidence map, executed checks and a valid Run Record. The repository does not have a built-in ChatGPT Skill runtime, so it must not pretend to have automatically executed one.
@@ -24,4 +26,3 @@ Earlier Case 01/02/03 Markdown artifacts remain under `evaluation/` and `benchma
 ## Next repeatable action
 
 Run both registered candidates against the same fixture, save the untouched output plus a Run Record in `benchmark/runs/`, then validate and render the scorecard. Case 01 is the recommended first run because it exercises concrete architecture analysis and safe evolution; Case 02 and Case 03 then test agent-boundary and frontend-growth reasoning.
-
