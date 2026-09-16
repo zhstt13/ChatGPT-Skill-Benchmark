@@ -13,23 +13,37 @@ Repository Engineering Comparison
 
 | Dimension | Baseline | AI Repository Engineer | Notes |
 |---|---:|---:|---|
-| Evidence Quality | TBD | TBD | |
-| Architecture Accuracy | TBD | TBD | |
-| Completeness | TBD | TBD | |
-| Maintainability Insight | TBD | TBD | |
-| Actionability | TBD | TBD | |
-| System Integration | TBD | TBD | |
+| Evidence Quality | TBD | TBD | Evidence collection pending execution |
+| Architecture Accuracy | TBD | TBD | Requires repository analysis output |
+| Completeness | TBD | TBD | Requires benchmark run artifacts |
+| Maintainability Insight | TBD | TBD | Requires refactor analysis |
+| Actionability | TBD | TBD | Requires improvement plan review |
+| System Integration | TBD | TBD | Requires workflow integration review |
+
+## Execution Status
+
+Status: Prepared for first real benchmark execution.
+
+## Required Evidence
+
+Before assigning scores, collect:
+
+- Raw Skill outputs
+- Repository analysis artifacts
+- Architecture map
+- Identified risks
+- Proposed improvements
 
 ## Observations
 
 ### Baseline
 
-TBD
+Pending execution.
 
 ### AI Repository Engineer
 
-TBD
+Pending execution.
 
 ## Improvement Actions
 
-TBD
+To be generated after evaluation.
