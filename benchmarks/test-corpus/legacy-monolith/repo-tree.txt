@@ -1,0 +1,12 @@
+legacy-monolith/
+├── app/
+│   ├── controllers/
+│   ├── services/
+│   ├── models/
+│   └── utils/
+├── database/
+├── config/
+├── scripts/
+└── README.md
+
+Synthetic repository for architecture analysis benchmark.
