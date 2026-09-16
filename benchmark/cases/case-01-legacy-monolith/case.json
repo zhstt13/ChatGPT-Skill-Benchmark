@@ -1,0 +1,19 @@
+{
+  "id": "case-01-legacy-monolith",
+  "version": 1,
+  "title": "Legacy order-service monolith",
+  "task_class": "analyze-evolve",
+  "fixture_root": "fixture",
+  "ground_truth_file": "ground_truth.json",
+  "candidates": ["baseline-repository-skill", "ai-repository-engineer"],
+  "task": "Inspect the supplied fixture without modifying it. Produce an evidence-backed current architecture map, distinguish facts from hypotheses, identify the highest-impact boundary and dependency risks, and propose the smallest safe evolution sequence. Do not claim that a runtime test, dependency graph, or deployment check was executed unless it was actually available in the run environment.",
+  "required_output": [
+    "path-backed architecture observations",
+    "facts, hypotheses, and unknowns separated",
+    "prioritized risks",
+    "preservation constraints",
+    "incremental current-to-target plan",
+    "verification performed and unavailable"
+  ]
+}
+

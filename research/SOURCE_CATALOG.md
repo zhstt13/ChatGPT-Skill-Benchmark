@@ -1,53 +1,23 @@
 # Source Catalog
 
-This catalog tracks external skills and repositories used as evidence or inspiration for the benchmark. A source must be verified before it is treated as a reference implementation.
+External repositories below are **reference material**, not benchmark ground truth and not copied implementations. Their current verified repository revisions are pinned in [`SOURCE_LOCK.json`](SOURCE_LOCK.json).
 
-## Verified — Repository / Architecture
+| ID | Source | Use in synthesis |
+|---|---|---|
+| `skill-based-architecture` | `WoJiSama/skill-based-architecture` | modular skill architecture and progressive disclosure |
+| `software-architecture-skill` | `tvmaly/software-architecture-skill` | architecture extraction patterns |
+| `reposkillopt` | `objectivlabs/reposkillopt` | evidence-bounded repository analysis and evolution |
+| `architect-skills` | `imadnan4/architect-skills` | system-design decision framing |
+| `agent-skills-codebase-architecture` | `mblode/agent-skills` / `skills/codebase-architecture` | codebase boundaries and maintainability patterns |
+| `anthropics-skills` | `anthropics/skills` | public skill packaging conventions |
+| `awesome-copilot` | `github/awesome-copilot` | reusable agent/configuration patterns |
+| `agent-skills-kit` | `bcastelino/agent-skills-kit` | authoring and validation patterns |
 
-1. **WoJiSama/skill-based-architecture**  
-   https://github.com/WoJiSama/skill-based-architecture  
-   Use: modular skill architecture, progressive disclosure, large-skill decomposition.
+## Verification rule
 
-2. **tvmaly/software-architecture-skill**  
-   https://github.com/tvmaly/software-architecture-skill  
-   Use: generating `ARCHITECTURE.md` and architecture diagrams from a codebase.
+A source is usable as a reference only when its repository and any named path have been checked and a revision is recorded in the lock file. If a source changes, refresh the lock deliberately; do not silently treat a moving default branch as stable evidence.
 
-3. **objectivlabs/reposkillopt**  
-   https://github.com/objectivlabs/reposkillopt  
-   Use: evidence-grounded repository understanding, legacy repository analysis, bounded skill evolution.
+## Synthesis rule
 
-4. **imadnan4/architect-skills**  
-   https://github.com/imadnan4/architect-skills  
-   Use: modular system-design practices and architect-level decision frameworks.
+The `ai-repository-engineer` Candidate synthesizes ideas from these references, but must be benchmarked against the same cases as narrower Candidates. A source link is never evidence that the Candidate performs well.
 
-5. **mblode/agent-skills — codebase-architecture**  
-   https://github.com/mblode/agent-skills/tree/main/skills/codebase-architecture  
-   Use: codebase structure, boundaries, maintainability, architecture-focused eval patterns.
-
-## Verified — Skill / Template Engineering
-
-6. **anthropics/skills**  
-   https://github.com/anthropics/skills  
-   Use: public Agent Skills examples, packaging patterns, conventions, and skill organization.
-
-7. **github/awesome-copilot**  
-   https://github.com/github/awesome-copilot  
-   Use: community-contributed skills, agents, instructions, and reusable configuration patterns.
-
-8. **bcastelino/agent-skills-kit**  
-   https://github.com/bcastelino/agent-skills-kit  
-   Use: authoring, templates, validation, packaging, and meta-skill patterns.
-
-## Verification Rule
-
-A repository is only promoted into `Verified` when its GitHub repository and relevant path have been confirmed. Earlier candidate links that are not yet verified must not be used as benchmark ground truth.
-
-## Synthesis Direction
-
-The benchmark will use these references to build and test a composite **AI Repository Engineer** skill with three major modes:
-
-- **Create** — generate repository templates and project scaffolding.
-- **Analyze** — understand, map, and audit existing repositories.
-- **Evolve** — plan refactors, migrations, and architecture-preserving changes.
-
-The benchmark must compare this composite approach against narrower specialist skills rather than assuming the composite design is superior.

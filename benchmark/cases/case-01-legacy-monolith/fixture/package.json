@@ -1,0 +1,9 @@
+{
+  "name": "legacy-order-service-fixture",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node src/app.js"
+  }
+}
+

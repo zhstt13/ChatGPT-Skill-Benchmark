@@ -1,0 +1,45 @@
+{
+  "case_id": "case-03-growing-frontend",
+  "ground_truth_version": 1,
+  "findings": [
+    {
+      "id": "FE-001",
+      "severity": "high",
+      "claim": "Cart state has two mutable owners: React component state and a module-level singleton store.",
+      "evidence": [
+        {"path": "fixture/src/App.jsx", "anchor": "const [cart, setCart] = useState([]);"},
+        {"path": "fixture/src/App.jsx", "anchor": "cartStore.items.push(product);"},
+        {"path": "fixture/src/state/cartStore.js", "anchor": "export const cartStore = { items: [] };"}
+      ]
+    },
+    {
+      "id": "FE-002",
+      "severity": "medium",
+      "claim": "Product data access is duplicated: the application shell performs direct fetches while an API helper performs the same request class.",
+      "evidence": [
+        {"path": "fixture/src/App.jsx", "anchor": "fetch(`/api/products?category=${selectedCategory}`)"},
+        {"path": "fixture/src/api/products.js", "anchor": "fetch(`/api/products?category=${category}`)"}
+      ]
+    },
+    {
+      "id": "FE-003",
+      "severity": "medium",
+      "claim": "The app registers a browser storage listener in an effect without a cleanup return, risking repeated listeners as dependencies change.",
+      "evidence": [
+        {"path": "fixture/src/App.jsx", "anchor": "window.addEventListener(\"storage\", syncCart);"},
+        {"path": "fixture/src/App.jsx", "anchor": "}, [selectedCategory]);"}
+      ]
+    },
+    {
+      "id": "FE-004",
+      "severity": "medium",
+      "claim": "ProductCard combines UI rendering, price fetching and direct mutation of the shared cart store, weakening component responsibility boundaries.",
+      "evidence": [
+        {"path": "fixture/src/components/ProductCard.jsx", "anchor": "fetch(`/api/products/${product.id}/price`)"},
+        {"path": "fixture/src/components/ProductCard.jsx", "anchor": "cartStore.items.push(product);"}
+      ]
+    }
+  ],
+  "minimum_expected_finding_ids": ["FE-001", "FE-002", "FE-003", "FE-004"]
+}
+

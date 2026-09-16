@@ -58,3 +58,4 @@ Before calling repository work complete:
 ## Benchmark Sources
 
 This candidate synthesizes patterns from the verified source catalog in `../../research/SOURCE_CATALOG.md`, especially skill-based architecture, repository understanding, software architecture extraction, codebase boundary design, and skill/template authoring references.
+

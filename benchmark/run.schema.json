@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ChatGPT Skill Benchmark Run Record v1",
+  "type": "object",
+  "required": ["run_id", "status", "outcome", "case_id", "case_version", "candidate_id", "candidate_skill_blob", "model", "environment", "raw_output_path", "evidence", "verification", "scores", "hard_fail"],
+  "properties": {
+    "run_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{5,}$"},
+    "status": {"enum": ["draft", "complete", "invalidated"]},
+    "outcome": {"enum": ["pass", "fail", "not-scored"]},
+    "case_id": {"type": "string"},
+    "case_version": {"type": "integer", "minimum": 1},
+    "candidate_id": {"type": "string"},
+    "candidate_skill_blob": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "model": {"type": "object", "required": ["id"], "properties": {"id": {"type": "string"}, "provider": {"type": "string"}}},
+    "environment": {"type": "object", "required": ["execution_mode", "write_access", "tools"], "properties": {"execution_mode": {"type": "string"}, "write_access": {"type": "boolean"}, "tools": {"type": "array", "items": {"type": "string"}}}},
+    "raw_output_path": {"type": "string"},
+    "evidence": {"type": "array", "items": {"type": "object", "required": ["finding_id", "path", "anchor", "classification"], "properties": {"finding_id": {"type": "string"}, "path": {"type": "string"}, "anchor": {"type": "string"}, "classification": {"enum": ["fact", "hypothesis", "recommendation"]}}}},
+    "verification": {"type": "object", "required": ["executed", "unavailable"], "properties": {"executed": {"type": "array", "items": {"type": "string"}}, "unavailable": {"type": "array", "items": {"type": "string"}}}},
+    "scores": {"type": "object"},
+    "hard_fail": {"type": "object", "required": ["triggered", "reasons"], "properties": {"triggered": {"type": "boolean"}, "reasons": {"type": "array", "items": {"type": "string"}}}}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "id": "chatgpt-skill-benchmark",
+  "title": "ChatGPT Skill Benchmark",
+  "scoring": "benchmark/scoring.json",
+  "candidates": "benchmark/candidates.json",
+  "run_schema": "benchmark/run.schema.json",
+  "cases": [
+    "benchmark/cases/case-01-legacy-monolith/case.json",
+    "benchmark/cases/case-02-ai-agent-repository/case.json",
+    "benchmark/cases/case-03-growing-frontend/case.json"
+  ]
+}
+

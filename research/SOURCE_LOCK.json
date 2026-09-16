@@ -1,0 +1,15 @@
+{
+  "lock_version": 1,
+  "verified_on": "2026-09-16",
+  "sources": [
+    {"id": "skill-based-architecture", "repository": "WoJiSama/skill-based-architecture", "ref": "main", "commit": "be491ceda470d9d1ff2af510c0899b92494baac4"},
+    {"id": "software-architecture-skill", "repository": "tvmaly/software-architecture-skill", "ref": "main", "commit": "caf35b50199ff0c715335393656c8efa89b6c4a1"},
+    {"id": "reposkillopt", "repository": "objectivlabs/reposkillopt", "ref": "main", "commit": "45eaff0ce37175f6589fb90a667e5ead0ba4d1af"},
+    {"id": "architect-skills", "repository": "imadnan4/architect-skills", "ref": "main", "commit": "8b55d0598fdfee70a44045839288245e290f3ea5"},
+    {"id": "agent-skills-codebase-architecture", "repository": "mblode/agent-skills", "path": "skills/codebase-architecture", "ref": "main", "commit": "e64f58dd4a611c151f0e2f7b584e46ef8ceb408c"},
+    {"id": "anthropics-skills", "repository": "anthropics/skills", "ref": "main", "commit": "34040c9c568585f6929bedeaad110ad08f079624"},
+    {"id": "awesome-copilot", "repository": "github/awesome-copilot", "ref": "main", "commit": "9ce814859eaa473178a1463ee3aa0c54a8860b86"},
+    {"id": "agent-skills-kit", "repository": "bcastelino/agent-skills-kit", "ref": "main", "commit": "bcf1a4baf9babb12b2f3cf446d40fea5bc4ea122"}
+  ]
+}
+

@@ -1,0 +1,45 @@
+{
+  "case_id": "case-02-ai-agent-repository",
+  "ground_truth_version": 1,
+  "findings": [
+    {
+      "id": "AG-001",
+      "severity": "high",
+      "claim": "Request-provided policy text is concatenated into the agent context without a trust boundary or source separation.",
+      "evidence": [
+        {"path": "fixture/src/context.js", "anchor": "request.policy || DEFAULT_POLICY"},
+        {"path": "fixture/src/context.js", "anchor": "User policy:"}
+      ]
+    },
+    {
+      "id": "AG-002",
+      "severity": "high",
+      "claim": "Conversation memory is a process-global array and is appended without a per-user key or retention bound.",
+      "evidence": [
+        {"path": "fixture/src/context.js", "anchor": "const conversationHistory = [];"},
+        {"path": "fixture/src/context.js", "anchor": "conversationHistory.push(request.message);"},
+        {"path": "fixture/src/context.js", "anchor": "conversationHistory.join"}
+      ]
+    },
+    {
+      "id": "AG-003",
+      "severity": "high",
+      "claim": "Model-selected tool names are dispatched directly through a connector map without input schema or authorization checks.",
+      "evidence": [
+        {"path": "fixture/src/agent.js", "anchor": "callTool(firstPass.toolName, firstPass.arguments)"},
+        {"path": "fixture/src/tools.js", "anchor": "return connectors[name](argumentsForTool);"}
+      ]
+    },
+    {
+      "id": "AG-004",
+      "severity": "medium",
+      "claim": "The HTTP boundary forwards the whole request body into the agent instead of creating a typed request contract.",
+      "evidence": [
+        {"path": "fixture/src/index.js", "anchor": "runAgent(req.body)"},
+        {"path": "fixture/src/index.js", "anchor": "app.post(\"/chat\""}
+      ]
+    }
+  ],
+  "minimum_expected_finding_ids": ["AG-001", "AG-002", "AG-003", "AG-004"]
+}
+

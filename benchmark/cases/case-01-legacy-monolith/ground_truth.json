@@ -1,0 +1,45 @@
+{
+  "case_id": "case-01-legacy-monolith",
+  "ground_truth_version": 1,
+  "findings": [
+    {
+      "id": "LM-001",
+      "severity": "high",
+      "claim": "Order creation mixes HTTP response shaping, business rules, persistence-state mutation, audit logging and email side effects in one module.",
+      "evidence": [
+        {"path": "fixture/src/orders.js", "anchor": "function createOrder"},
+        {"path": "fixture/src/orders.js", "anchor": "sendReceiptEmail"},
+        {"path": "fixture/src/orders.js", "anchor": "renderOrderHtml"}
+      ]
+    },
+    {
+      "id": "LM-002",
+      "severity": "high",
+      "claim": "The application entry point and order module form a direct circular CommonJS dependency.",
+      "evidence": [
+        {"path": "fixture/src/app.js", "anchor": "require(\"./orders\")"},
+        {"path": "fixture/src/orders.js", "anchor": "require(\"./app\")"}
+      ]
+    },
+    {
+      "id": "LM-003",
+      "severity": "medium",
+      "claim": "Shared mutable in-memory state is mutated from order workflows, making state ownership and test isolation weak.",
+      "evidence": [
+        {"path": "fixture/src/store.js", "anchor": "const state = {"},
+        {"path": "fixture/src/orders.js", "anchor": "state.orders.push(order)"}
+      ]
+    },
+    {
+      "id": "LM-004",
+      "severity": "medium",
+      "claim": "The fixture explicitly has no automated test suite, so behavior-preserving refactoring needs characterization coverage first.",
+      "evidence": [
+        {"path": "fixture/README.md", "anchor": "No automated test suite is configured."},
+        {"path": "fixture/package.json", "anchor": "\"start\": \"node src/app.js\""}
+      ]
+    }
+  ],
+  "minimum_expected_finding_ids": ["LM-001", "LM-002", "LM-003", "LM-004"]
+}
+

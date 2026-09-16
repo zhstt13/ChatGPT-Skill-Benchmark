@@ -1,0 +1,27 @@
+{
+  "run_id": "case-01-legacy-monolith--candidate-id--yyyy-mm-dd--r01",
+  "status": "draft",
+  "outcome": "not-scored",
+  "case_id": "case-01-legacy-monolith",
+  "case_version": 1,
+  "candidate_id": "candidate-id",
+  "candidate_skill_blob": "0000000000000000000000000000000000000000",
+  "model": {"id": "exact-model-id", "provider": "provider-name"},
+  "environment": {"execution_mode": "manual-skill-runtime", "write_access": false, "tools": []},
+  "raw_output_path": "benchmark/runs/replace-with-raw-output.md",
+  "evidence": [
+    {"finding_id": "case-finding-id", "path": "fixture/path/to/file", "anchor": "exact text", "classification": "fact"}
+  ],
+  "verification": {"executed": [], "unavailable": []},
+  "scores": {
+    "correctness_evidence": 0,
+    "architecture_quality": 0,
+    "context_management": 0,
+    "maintainability": 0,
+    "preservation_change_safety": 0,
+    "documentation_explainability": 0,
+    "efficiency": 0,
+    "total": 0
+  },
+  "hard_fail": {"triggered": false, "reasons": []}
+}

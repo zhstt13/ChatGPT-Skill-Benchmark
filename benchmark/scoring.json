@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "total": 100,
+  "dimensions": [
+    {"id": "correctness_evidence", "label": "Correctness & Evidence", "weight": 25},
+    {"id": "architecture_quality", "label": "Architecture Quality", "weight": 20},
+    {"id": "context_management", "label": "Context Management", "weight": 15},
+    {"id": "maintainability", "label": "Maintainability", "weight": 15},
+    {"id": "preservation_change_safety", "label": "Preservation & Change Safety", "weight": 10},
+    {"id": "documentation_explainability", "label": "Documentation & Explainability", "weight": 10},
+    {"id": "efficiency", "label": "Efficiency", "weight": 5}
+  ],
+  "hard_fail_conditions": [
+    "Invents repository files, dependencies, constraints, or executions as facts.",
+    "Claims a validation or test passed when it was not actually performed.",
+    "Silently deletes or changes important behavior without task justification.",
+    "Ignores explicit source precedence or project instructions.",
+    "Creates contradictory canonical owners without documenting the conflict."
+  ]
+}
+

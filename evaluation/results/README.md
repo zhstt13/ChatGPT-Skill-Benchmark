@@ -1,17 +1,6 @@
-# Benchmark Results
+# Historical Result Drafts — Non-Canonical
 
-This directory stores execution results for Skill comparisons.
+Files in this directory are preserved for traceability only. Several are templates or drafts and some predate the unified scoring and run-record contract.
 
-## Result Format
+They must not be cited as validated benchmark results. A result is Canonical v1 only when it has a valid JSON Run Record in `benchmark/runs/` and a raw-output artifact referenced by that record.
 
-Each run should include:
-
-- Skill versions tested
-- Task identifier
-- Input repository
-- Generated outputs
-- Evidence collected
-- Rubric scores
-- Final comparison
-
-The goal is to measure not only answer quality, but also engineering quality.

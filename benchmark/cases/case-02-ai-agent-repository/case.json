@@ -1,0 +1,18 @@
+{
+  "id": "case-02-ai-agent-repository",
+  "version": 1,
+  "title": "AI agent context and tool boundaries",
+  "task_class": "analyze-evolve",
+  "fixture_root": "fixture",
+  "ground_truth_file": "ground_truth.json",
+  "candidates": ["baseline-repository-skill", "ai-repository-engineer"],
+  "task": "Inspect the supplied AI-agent repository fixture without modifying it. Map runtime, context, memory and tool ownership boundaries; identify path-backed failure risks; state which conclusions are facts versus hypotheses; and propose a bounded, preservation-safe evolution plan. Do not infer authentication, tool policy, model behavior or executed tests beyond what the fixture proves.",
+  "required_output": [
+    "architecture and context-flow map",
+    "tool and memory ownership analysis",
+    "facts, hypotheses, and unknowns separated",
+    "prioritized risks with fixture evidence",
+    "minimal migration slices and verification plan"
+  ]
+}
+

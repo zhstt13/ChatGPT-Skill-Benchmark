@@ -1,0 +1,18 @@
+{
+  "id": "case-03-growing-frontend",
+  "version": 1,
+  "title": "Growing frontend state and component ownership",
+  "task_class": "analyze-evolve",
+  "fixture_root": "fixture",
+  "ground_truth_file": "ground_truth.json",
+  "candidates": ["baseline-repository-skill", "ai-repository-engineer"],
+  "task": "Inspect the supplied frontend fixture without modifying it. Map component, state and data-access ownership; identify path-backed maintainability or regression risks; separate facts from hypotheses; and propose a low-risk refactoring sequence that preserves observed behavior. Do not claim a UI, build or test command passed unless it was actually run.",
+  "required_output": [
+    "current component and state map",
+    "data-access and ownership observations",
+    "facts, hypotheses, and unknowns separated",
+    "prioritized low-risk migration slices",
+    "regression-prevention plan"
+  ]
+}
+

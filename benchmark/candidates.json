@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "candidates": [
+    {
+      "id": "baseline-repository-skill",
+      "label": "Baseline Repository Skill",
+      "kind": "baseline",
+      "skill_path": "reference-skills/baseline-repository-skill/SKILL.md",
+      "skill_blob": "1d6bb7e7e411f137d9c2c5b83bcbc5fb41da6b09",
+      "supported_task_classes": ["analyze-evolve", "create"]
+    },
+    {
+      "id": "ai-repository-engineer",
+      "label": "AI Repository Engineer",
+      "kind": "composite",
+      "skill_path": "reference-skills/ai-repository-engineer/SKILL.md",
+      "skill_blob": "b617467c320df25e96736074969ab190e500d73c",
+      "workflow_paths": [
+        "reference-skills/ai-repository-engineer/workflows/analyze.md",
+        "reference-skills/ai-repository-engineer/workflows/create.md",
+        "reference-skills/ai-repository-engineer/workflows/evolve.md"
+      ],
+      "supported_task_classes": ["analyze-evolve", "create"]
+    }
+  ]
+}
