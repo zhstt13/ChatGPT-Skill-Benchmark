@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Record the actual execution evidence before final scoring.
+Record execution evidence before final scoring. This artifact separates observed output from evaluation conclusions.
 
 ## Benchmark Case
 
@@ -17,51 +17,63 @@ Repository Engineering Comparison — Case 01 Legacy Monolith Analysis
 
 ### Input Repository
 
-TBD
+Status: Pending benchmark repository selection
 
 ### Skill Version
 
-TBD
+Status: Pending execution
 
 ### Model Configuration
 
-TBD
+Status: Pending execution
 
 ## Evidence Collection
 
 ### Baseline Output Evidence
 
-TBD
+Not executed yet.
+
+Required evidence:
+- Repository understanding
+- Architecture summary
+- Dependency observations
+- Improvement suggestions
 
 ### AI Repository Engineer Output Evidence
 
-TBD
+Not executed yet.
+
+Required evidence:
+- Current architecture model
+- Evidence-backed findings
+- Change impact analysis
+- Evolution plan
 
 ## Analysis
 
 ### Facts Identified
 
-TBD
+To be populated from execution output only.
 
 ### Assumptions Identified
 
-TBD
+To be separated explicitly from facts during review.
 
 ### Unknowns
 
-TBD
+Unknown information must remain marked as unknown until verified.
 
 ## Rubric Preparation
 
 | Dimension | Evidence | Notes |
 |---|---|---|
-| Evidence Quality | TBD | |
-| Architecture Accuracy | TBD | |
-| Completeness | TBD | |
-| Maintainability Insight | TBD | |
-| Actionability | TBD | |
-| System Integration | TBD | |
+| Evidence Quality | Pending | |
+| Architecture Accuracy | Pending | |
+| Completeness | Pending | |
+| Maintainability Insight | Pending | |
+| Actionability | Pending | |
+| System Integration | Pending | |
 
 ## Next Step
 
-Complete execution and populate the scorecard using collected evidence.
+Run both candidates on the same repository input, collect outputs, then populate the scorecard.
