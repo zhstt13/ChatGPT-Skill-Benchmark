@@ -1,0 +1,4 @@
+interface:
+  display_name: "ChatGPT Skill Benchmark"
+  short_description: "اجرای منصفانه و مستند بنچمارک اسکیل‌ها"
+  default_prompt: "Use $chatgpt-skill-benchmark to run and document a fair comparison of repository skills."
