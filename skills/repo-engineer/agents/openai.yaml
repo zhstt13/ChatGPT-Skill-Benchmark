@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repo Engineer"
+  short_description: "ساخت، بررسی و بهبود ساختار ریپازیتوری"
+  default_prompt: "Use $repo-engineer to analyze this repository and propose a safe improvement plan."

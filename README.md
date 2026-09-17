@@ -4,7 +4,7 @@
 
 ## Skill قابل نصب
 
-فایل Skill این پروژه در [`skills/chatgpt-skill-benchmark/`](skills/chatgpt-skill-benchmark/) قرار دارد. این Skill برای اجرای منصفانه، ثبت Run معتبر و مقایسه‌ی نتایج بنچمارک است؛ Candidateهای زیر `reference-skills/` خودِ Skill بنچمارک نیستند. منبع معیارها و Caseها همچنان فایل‌های Canonical همین ریپو هستند.
+نسخهٔ قابل نصب **Repo Engineer** در [`skills/repo-engineer/`](skills/repo-engineer/) قرار دارد. دستورالعمل اصلی، سه مسیر Create / Analyze / Evolve و منابع وابسته داخل همان پوشه هستند؛ اجرای معمول Skill نیازی به دریافت فایل دیگری از GitHub ندارد. این Skill از `reference-skills/ai-repository-engineer` استخراج شده است. داده‌ها و ابزارهای خودِ بنچمارک همچنان جداگانه زیر `benchmark/` و `tools/` هستند.
 
 ## وضعیت Canonical
 
