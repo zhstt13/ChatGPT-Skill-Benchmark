@@ -2,6 +2,10 @@
 
 یک بنچمارک نسخه‌دار و evidence-grounded برای مقایسه‌ی Skillهای Agent روی مسئله‌های یکسانِ مهندسی Repository.
 
+## Skill قابل نصب
+
+فایل Skill این پروژه در [`skills/chatgpt-skill-benchmark/`](skills/chatgpt-skill-benchmark/) قرار دارد. این Skill برای اجرای منصفانه، ثبت Run معتبر و مقایسه‌ی نتایج بنچمارک است؛ Candidateهای زیر `reference-skills/` خودِ Skill بنچمارک نیستند. منبع معیارها و Caseها همچنان فایل‌های Canonical همین ریپو هستند.
+
 ## وضعیت Canonical
 
 هسته‌ی **Canonical v1** آماده است: سه Case دارای fixture واقعی، ground truth قابل‌ردیابی، قرارداد یکتای Run و Score، validator محلی و CI دارد.
